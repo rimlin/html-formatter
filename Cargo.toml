@@ -1,5 +1,5 @@
 [package]
-name = "tokenator"
+name = "html-formatter"
 version = "0.1.0"
 edition = "2021"
 
