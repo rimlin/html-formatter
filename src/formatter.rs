@@ -1,13 +1,13 @@
 use crate::{config::Config, models::*};
 use std::fmt::Write;
 
-pub struct Formatter {
+pub struct Formatter<'a> {
     tokens: Vec<LexerToken>,
-    config: Config,
+    config: &'a Config,
 }
 
-impl Formatter {
-    pub fn new(tokens: Vec<LexerToken>, config: Config) -> Self {
+impl<'a> Formatter<'a> {
+    pub fn new(tokens: Vec<LexerToken>, config: &'a Config) -> Self {
         Self { tokens, config }
     }
 

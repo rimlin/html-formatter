@@ -1,0 +1,137 @@
+---
+source: src/lexer.rs
+assertion_line: 492
+expression: tokens
+---
+[
+    StartTag(
+        StartTag {
+            tag_name: "html",
+            attributes: [],
+            self_closing: false,
+            loc: Some(
+                Location {
+                    start: LocationPos {
+                        line: 1,
+                        column: 0,
+                    },
+                    end: LocationPos {
+                        line: 1,
+                        column: 6,
+                    },
+                },
+            ),
+        },
+    ),
+    StartTag(
+        StartTag {
+            tag_name: "body",
+            attributes: [],
+            self_closing: false,
+            loc: Some(
+                Location {
+                    start: LocationPos {
+                        line: 1,
+                        column: 6,
+                    },
+                    end: LocationPos {
+                        line: 1,
+                        column: 12,
+                    },
+                },
+            ),
+        },
+    ),
+    StartTag(
+        StartTag {
+            tag_name: "a",
+            attributes: [
+                TagAttribute {
+                    attribute_name: "href",
+                    attribute_value: "https://www.w3schools.com",
+                },
+            ],
+            self_closing: false,
+            loc: Some(
+                Location {
+                    start: LocationPos {
+                        line: 1,
+                        column: 12,
+                    },
+                    end: LocationPos {
+                        line: 1,
+                        column: 46,
+                    },
+                },
+            ),
+        },
+    ),
+    Chars(
+        Chars {
+            data: "This is a link",
+            loc: Some(
+                Location {
+                    start: LocationPos {
+                        line: 1,
+                        column: 46,
+                    },
+                    end: LocationPos {
+                        line: 1,
+                        column: 60,
+                    },
+                },
+            ),
+        },
+    ),
+    EndTag(
+        EndTag {
+            tag_name: "a",
+            loc: Some(
+                Location {
+                    start: LocationPos {
+                        line: 1,
+                        column: 60,
+                    },
+                    end: LocationPos {
+                        line: 1,
+                        column: 64,
+                    },
+                },
+            ),
+        },
+    ),
+    EndTag(
+        EndTag {
+            tag_name: "body",
+            loc: Some(
+                Location {
+                    start: LocationPos {
+                        line: 1,
+                        column: 64,
+                    },
+                    end: LocationPos {
+                        line: 1,
+                        column: 71,
+                    },
+                },
+            ),
+        },
+    ),
+    EndTag(
+        EndTag {
+            tag_name: "html",
+            loc: Some(
+                Location {
+                    start: LocationPos {
+                        line: 1,
+                        column: 71,
+                    },
+                    end: LocationPos {
+                        line: 1,
+                        column: 78,
+                    },
+                },
+            ),
+        },
+    ),
+]

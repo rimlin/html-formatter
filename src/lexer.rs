@@ -49,7 +49,7 @@ impl<'a> Lexer<'a> {
 
         &self.tokens
     }
-	
+
     fn read_next(&mut self) {
         // self.read_while(utils::is_whitespace);
 
@@ -423,9 +423,15 @@ impl<'a> Lexer<'a> {
             self.consume();
             self.transition_to(LexerState::BeforeAttributeName);
         } else if char == '/' {
-            self.finish_attribute_value();
-            self.consume();
-            self.transition_to(LexerState::SelfClosingStartTag);
+            let next_char = self.consume();
+
+            if next_char == '>' {
+                self.finish_attribute_value();
+                self.transition_to(LexerState::SelfClosingStartTag);
+            } else {
+                // In example: <a href=https://www.w3schools.com>
+                self.append_to_attribute_value(char);
+            }
         } else if char == '>' {
             self.finish_attribute_value();
             self.consume();
@@ -466,5 +472,23 @@ impl<'a> Lexer<'a> {
         } else {
             self.transition_to(LexerState::BeforeAttributeName);
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Lexer;
+    use crate::input_stream::InputStream;
+
+    #[test]
+    fn attribute_without_quotes() {
+        let content =
+            "<html><body><a href=https://www.w3schools.com>This is a link</a></body></html>";
+
+        let stream = InputStream::new(content);
+        let mut lexer = Lexer::new(stream);
+        let tokens = lexer.tokenize();
+
+        insta::assert_debug_snapshot!(tokens);
     }
 }

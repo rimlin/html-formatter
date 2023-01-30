@@ -1,12 +1,12 @@
 use std::str::FromStr;
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub struct LocationPos {
     pub line: usize,
     pub column: usize,
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub struct Location {
     pub start: LocationPos,
     pub end: LocationPos,
@@ -16,7 +16,7 @@ pub trait Token {
     fn add_loc(&mut self, loc: Location);
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub struct TagAttribute {
     pub attribute_name: String,
     pub attribute_value: String,
@@ -34,7 +34,7 @@ impl TagAttribute {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub struct StartTag {
     pub tag_name: String,
     pub attributes: Vec<TagAttribute>,
@@ -63,7 +63,7 @@ impl Token for StartTag {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub struct EndTag {
     pub tag_name: String,
     pub loc: Option<Location>,
@@ -82,7 +82,7 @@ impl Token for EndTag {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub struct Chars {
     pub data: String,
     pub loc: Option<Location>,
@@ -101,14 +101,14 @@ impl Token for Chars {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub enum LexerToken {
     StartTag(StartTag),
     EndTag(EndTag),
     Chars(Chars),
 }
 
-#[derive(Default)]
+#[derive(Default, Debug)]
 pub enum IndentStyle {
     #[default]
     Tab,
