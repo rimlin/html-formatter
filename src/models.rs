@@ -116,10 +116,10 @@ pub enum IndentStyle {
 }
 
 impl IndentStyle {
-    pub fn repeat(&self, size: usize) -> String {
+    pub fn repeat(&self, size: i32) -> String {
         match self {
-            Self::Tab => "	".repeat(size),
-            Self::Space => " ".repeat(size),
+            Self::Tab => "	".repeat(size as usize),
+            Self::Space => " ".repeat(size as usize),
         }
     }
 }

@@ -32,7 +32,7 @@ impl Walker {
         let mut lexer = Lexer::new(stream);
 
         let tokens = lexer.tokenize();
-        let formatter = Formatter::new(tokens.to_owned(), &self.config);
+        let mut formatter = Formatter::new(tokens.to_owned(), &self.config);
         let content = formatter.format();
 
         fs::write(path, content).expect("Unable to write file");
